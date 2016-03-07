@@ -87,9 +87,9 @@ module.exports = (robot) ->
 
   # Finds the room for most adaptors
   findRoom = (msg) ->
-    room = msg.envelope.room
+    room = msg.envelope.user.reply_to
     if _.isUndefined(room)
-      room = msg.envelope.user.reply_to
+      room = msg.envelope.room
     room
 
   # Stores a standup in the brain.
