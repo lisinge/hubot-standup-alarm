@@ -79,9 +79,9 @@ module.exports = (robot) ->
     if standups.length > 0
       #do some magic here to loop through the standups and find the one for right now
       theStandup = standups.filter(standupShouldFire)
-      message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} #{theStandup[0].location}"
+      message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} (standup)"
     else
-      message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} #{standups[0].location}"
+      message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} (standup)"
     robot.messageRoom room, message
     return
 
