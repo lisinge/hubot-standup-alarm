@@ -26,6 +26,8 @@
 cronJob = require('cron').CronJob
 _ = require('underscore')
 
+hangoutsDomain = process.env.HUBOT_GOOGLE_HANGOUTS_DOMAIN
+
 module.exports = (robot) ->
   # Compares current time to the time of the standup
   # to see if it should be fired.
@@ -82,7 +84,11 @@ module.exports = (robot) ->
       message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} (standup)"
     else
       message = "#{PREPEND_MESSAGE} #{_.sample(STANDUP_MESSAGES)} (standup)"
-    robot.messageRoom room, message
+
+    hangoutRoom = "standup-#{+new Date()}"
+    hangoutMessage = " Join remotely here: https://plus.google.com/hangouts/_/#{hangoutsDomain}/#{hangoutRoom}"
+
+    robot.messageRoom room, message + hangoutMessage
     return
 
   # Finds the room for most adaptors
